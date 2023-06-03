@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,9 +11,18 @@ import Focus from './src/features/Focus';
 import { colors } from './src/utils/colors';
 
 export default function App() {
+  const [currentSubject, setCurrentSubject] = useState('');
   return (
     <SafeAreaView style={styles.container}>
-      <Focus />
+      {!currentSubject ? (
+        <Focus addSubject={setCurrentSubject} />
+      ) : (
+        <View>
+          <Text style={{ color: colors.white }}>
+            I am going to render the Timer for {currentSubject}
+          </Text>
+        </View>
+      )}
     </SafeAreaView>
   );
 }
@@ -24,4 +34,3 @@ const styles = StyleSheet.create({
     backgroundColor: colors.darkBlue,
   },
 });
- 
